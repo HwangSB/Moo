@@ -20,35 +20,62 @@ class _SignupPageState extends State<SignupPage> {
       body: Stack(
         overflow: Overflow.visible,
         children: <Widget>[
-          Bubble(
-            radius: 50.0,
-            colors: smallBubbleGradient,
+          Positioned(
+            top: MediaQuery.of(context).size.height * -0.1,
+            right: MediaQuery.of(context).size.width * -0.2,
+            child: Bubble(
+              radius: MediaQuery.of(context).size.width * 0.25,
+              colors: smallBubbleGradient,
+            ),
           ),
-          Bubble(
-            radius: 100.0,
-            colors: bigBubbleGradient,
+          Positioned(
+            left: MediaQuery.of(context).size.width * -0.5,
+            bottom: MediaQuery.of(context).size.height * 0.1,
+            child: Bubble(
+              radius: MediaQuery.of(context).size.width * 0.6,
+              colors: bigBubbleGradient,
+            ),
           ),
-          Positioned.fill(
-            child: SafeArea(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  MaterialButton(
-                    color: kakaoColor,
-                    child: Text("카카오 계정으로 쉬운 시작"),
-                    onPressed: () {},
-                  ),
-                  MaterialButton(
-                    color: googleColor,
-                    child: Text("구글 계정으로 쉬운 시작"),
-                    onPressed: () {},
-                  ),
-                ],
+          SafeArea(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    _signupButton("카카오 계정으로 쉬운 시작", kakaoColor),
+                    _signupButton("구글 계정으로 쉬운 시작", googleColor)
+                  ],
+                ),
               ),
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  _signupButton(String text, Color color) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width * 0.1,
+        vertical: 8.0,
+      ),
+      child: MaterialButton(
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.15,
+          vertical: 12.0,
+        ),
+        color: color,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Icon(Icons.message),
+            Text(text),
+          ],
+        ),
+        onPressed: () {},
       ),
     );
   }
