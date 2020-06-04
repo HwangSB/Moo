@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:moo/components/bubble.dart';
+import 'package:moo/screens/signup_information_page.dart';
 
 class SignupPage extends StatefulWidget {
+  SignupPage({Key key}) : super(key: key);
+
   @override
-  State<StatefulWidget> createState() => _SignupPageState();
+  _SignupPageState createState() => _SignupPageState();
 }
 
 class _SignupPageState extends State<SignupPage> {
@@ -75,7 +78,11 @@ class _SignupPageState extends State<SignupPage> {
             Text(text),
           ],
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => SignupInformationPage()),
+          );
+        },
       ),
     );
   }
