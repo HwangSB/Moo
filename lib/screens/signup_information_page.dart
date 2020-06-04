@@ -78,12 +78,22 @@ class _SignupInformationPageState extends State<SignupInformationPage> {
                         shape: BoxShape.rectangle,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(
-                              MediaQuery.of(context).size.width * 0.2),
+                              MediaQuery.of(context).size.width * 0.15),
                           topRight: Radius.circular(
-                              MediaQuery.of(context).size.width * 0.2),
+                              MediaQuery.of(context).size.width * 0.15),
                         ),
                       ),
-                      child: null,
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              CircularButton(
+                                child: Text("hello"),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

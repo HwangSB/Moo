@@ -11,7 +11,7 @@ class CircularButton extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         shape: BoxShape.rectangle,
-        borderRadius: BorderRadius.circular(double.infinity),
+        borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width),
       ),
       child: this.child,
     );
