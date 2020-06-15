@@ -47,8 +47,8 @@ class _SignupPageState extends State<SignupPage> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    _signupButton("카카오 계정으로 쉬운 시작", kakaoColor),
-                    _signupButton("구글 계정으로 쉬운 시작", googleColor)
+                    _signupButton("assets/images/signup_page/kakao-logo.png", "카카오 계정으로 쉬운 시작", kakaoColor),
+                    _signupButton("assets/images/signup_page/google-logo.png", "구글 계정으로 쉬운 시작", googleColor)
                   ],
                 ),
               ),
@@ -59,7 +59,7 @@ class _SignupPageState extends State<SignupPage> {
     );
   }
 
-  _signupButton(String text, Color color) {
+  _signupButton(String name, String text, Color color) {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: MediaQuery.of(context).size.width * 0.1,
@@ -74,8 +74,11 @@ class _SignupPageState extends State<SignupPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Icon(Icons.message),
-            SizedBox(width: 16.0,),
+            Image.asset(
+              name,
+              width: 24,
+              height: 24,
+            ),
             Text(text),
           ],
         ),
