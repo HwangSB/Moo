@@ -67,14 +67,15 @@ class _SignupPageState extends State<SignupPage> {
       ),
       child: MaterialButton(
         padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * 0.15,
+          horizontal: 8.0,
           vertical: 12.0,
         ),
         color: color,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Icon(Icons.message),
+            SizedBox(width: 16.0,),
             Text(text),
           ],
         ),

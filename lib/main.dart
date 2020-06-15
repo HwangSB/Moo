@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Color.fromARGB(255, 0, 136, 255)
       ),
       home: SignupPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
