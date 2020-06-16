@@ -25,17 +25,17 @@ class _SignupPageState extends State<SignupPage> {
         children: <Widget>[
           Positioned(
             top: MediaQuery.of(context).size.height * -0.1,
-            right: MediaQuery.of(context).size.width * -0.2,
+            right: MediaQuery.of(context).size.height * -0.1,
             child: Bubble(
-              radius: MediaQuery.of(context).size.width * 0.25,
+              radius: MediaQuery.of(context).size.height * 0.14,
               colors: smallBubbleGradient,
             ),
           ),
           Positioned(
-            left: MediaQuery.of(context).size.width * -0.5,
+            left: MediaQuery.of(context).size.height * -0.26,
             bottom: MediaQuery.of(context).size.height * 0.1,
             child: Bubble(
-              radius: MediaQuery.of(context).size.width * 0.6,
+              radius: MediaQuery.of(context).size.height * 0.32,
               colors: bigBubbleGradient,
             ),
           ),
@@ -79,7 +79,8 @@ class _SignupPageState extends State<SignupPage> {
               width: 24,
               height: 24,
             ),
-            Text(text),
+            SizedBox(width: 16.0),
+            Text(text, style: TextStyle(fontFamily: "SCDream", fontWeight: FontWeight.w400),),
           ],
         ),
         onPressed: () {
