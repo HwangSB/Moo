@@ -17,9 +17,25 @@ class _QusetionPostState extends State<QuestionPost> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
+<<<<<<< HEAD
       body: SafeArea(
         child: Stack(
           overflow: Overflow.visible,
+=======
+      appBar: AppBar(
+        centerTitle: true,
+        brightness: Brightness.light,
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: new Icon(
+            Icons.close,
+            color: textColor,
+          ),
+          onPressed: () {}, //추가
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+>>>>>>> be66ea065ff2e839314713b89bba22355e1c3899
           children: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width,
