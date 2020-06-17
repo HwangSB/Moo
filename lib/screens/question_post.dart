@@ -28,14 +28,13 @@ class _QusetionPostState extends State<QuestionPost> {
           ),
           onPressed: () {}, //추가
         ),
-        
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
               padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: Text(
-                "질문",
+                "질문게시글",
                 style: TextStyle(
                   color: textColor,
                   fontSize: 20.0,
