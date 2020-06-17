@@ -35,7 +35,7 @@ class _QusetionPostState extends State<QuestionPost> {
             Padding(
               padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: Text(
-                "질문게시글ㅇ",
+                "질문",
                 style: TextStyle(
                   color: textColor,
                   fontSize: 20.0,
