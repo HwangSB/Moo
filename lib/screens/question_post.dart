@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moo/components/circular_button.dart';
 
-//질문 게시판 메인
+
 class QuestionPost extends StatefulWidget {
   QuestionPost({Key key}) : super(key: key);
 
@@ -10,27 +10,40 @@ class QuestionPost extends StatefulWidget {
 }
 
 enum ChooseTag { yes, no }
+enum TagType { feed, story, disease, sayang, gaelyang, facility, product, etc }
 
 class _QusetionPostState extends State<QuestionPost> {
   final mainColor = Color(0xFF0088FF);
   final fabGradient = [Color(0xFF0088FF), Color(0xFF3F44D9)];
   ChooseTag _chooseTag;
+  TagType _tagType;
 
-  bool tagcheck = false;
-  List<Widget> tagField;
+  bool representtagon = false;
+  bool tagwidgeton = false;
+  bool titlechange = false;
+
+  String titletext = "질문게시글";
+
+  List<Widget> mainview = [];
+  List<Widget> tagview = [];
+  List<Widget> writevie = [];
 
   _tagwidget() {
     return <Widget>[
       Align(
         child: Container(
           padding: EdgeInsets.only(left: 15),
-          width: 130,
+          width: 90,
           child: CircularButton(
             "#태그선택",
             value: 1,
+            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 4),
+            textStyle: TextStyle(
+              fontSize: 12,
+            ),
             groupValue: _chooseTag,
             onTap: () => setState(() {
-              _chooseTag = ChooseTag.yes;
+              representtagon = true;
             }),
           ),
         ),
@@ -39,11 +52,233 @@ class _QusetionPostState extends State<QuestionPost> {
     ];
   }
 
+  _mainWidget() {
+    return <Widget>[
+      Container(
+        padding: EdgeInsets.only(left: 20),
+        child: TextField(
+          style: TextStyle(
+            fontFamily: "SCDream",
+            fontWeight: FontWeight.w400,
+            fontSize: 18,
+          ),
+          decoration: InputDecoration.collapsed(
+              hintText: "제목",
+              hintStyle: TextStyle(
+                color: Color(0xFF999999),
+              )),
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Container(
+          height: 0.5,
+          color: Color(0x66000000),
+        ),
+      ),
+      Container(
+        padding: EdgeInsets.only(left: 5),
+        child: FlatButton(
+          onPressed: () => setState(() {
+            tagwidgeton = true;
+          }),
+          child: Align(
+            child: Text(
+              "여기를 눌러 새로운 소식을 농가들과 나눠보세요.",
+              style: TextStyle(
+                fontFamily: "SCDream",
+                fontWeight: FontWeight.w300,
+                fontSize: 15,
+                color: Color(0x44000000),
+              ),
+            ),
+            alignment: Alignment.centerLeft,
+          ),
+        ),
+      ),
+    ];
+  }
+
+  _representTag() {
+    final tagTextStyle = TextStyle(
+      fontFamily: "SCDream",
+      fontSize: 13.0,
+      fontWeight: FontWeight.w300,
+    );
+
+    return <Widget>[
+      SizedBox(height: 30.0),
+      Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 0.2,
+        decoration: BoxDecoration(
+          color: Color(0x11000000),
+        ),
+        child: Column(
+          children: <Widget>[
+            Align(
+              child: Padding(
+                padding: EdgeInsets.only(left: 15, top: 18, bottom: 18),
+                child: Text(
+                  "대표태그",
+                  style: TextStyle(
+                    fontSize: 15.0,
+                    color: Color(0x66000000),
+                    fontFamily: "SCDream",
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+              ),
+              alignment: Alignment.centerLeft,
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  width: 85,
+                  padding: EdgeInsets.only(left: 15, bottom: 5),
+                  child: CircularButton(
+                    "사료",
+                    value: TagType.feed,
+                    textStyle: tagTextStyle,
+                    groupValue: _tagType,
+                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                    onTap: () {},
+                  ),
+                ),
+                Container(
+                  width: 85,
+                  padding: EdgeInsets.only(left: 5, bottom: 5),
+                  child: CircularButton(
+                    "축사이야기",
+                    value: TagType.story,
+                    textStyle: tagTextStyle,
+                    groupValue: _tagType,
+                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                    onTap: () {},
+                  ),
+                ),
+                Container(
+                  width: 85,
+                  padding: EdgeInsets.only(left: 5, bottom: 5),
+                  child: CircularButton(
+                    "질병",
+                    value: TagType.disease,
+                    textStyle: tagTextStyle,
+                    groupValue: _tagType,
+                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                    onTap: () {},
+                  ),
+                ),
+                Container(
+                  width: 85,
+                  padding: EdgeInsets.only(left: 5, bottom: 5),
+                  child: CircularButton(
+                    "사양",
+                    value: TagType.sayang,
+                    textStyle: tagTextStyle,
+                    groupValue: _tagType,
+                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                    onTap: () {},
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  width: 85,
+                  padding: EdgeInsets.only(left: 15, bottom: 5),
+                  child: CircularButton(
+                    "개량",
+                    value: TagType.gaelyang,
+                    textStyle: tagTextStyle,
+                    groupValue: _tagType,
+                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                    onTap: () {},
+                  ),
+                ),
+                Container(
+                  width: 85,
+                  padding: EdgeInsets.only(left: 5, bottom: 5),
+                  child: CircularButton(
+                    "시설",
+                    value: TagType.facility,
+                    textStyle: tagTextStyle,
+                    groupValue: _tagType,
+                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                    onTap: () {},
+                  ),
+                ),
+                Container(
+                  width: 85,
+                  padding: EdgeInsets.only(left: 5, bottom: 5),
+                  child: CircularButton(
+                    "제품",
+                    value: TagType.product,
+                    textStyle: tagTextStyle,
+                    groupValue: _tagType,
+                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                    onTap: () {},
+                  ),
+                ),
+                Container(
+                  width: 85,
+                  padding: EdgeInsets.only(left: 5, bottom: 5),
+                  child: CircularButton(
+                    "기타",
+                    value: TagType.etc,
+                    textStyle: tagTextStyle,
+                    groupValue: _tagType,
+                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                    onTap: () {},
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    ];
+  }
+
+  _c_mainWidget() {
+    return <Widget>[
+      Container(
+        padding: EdgeInsets.only(left: 5),
+        child: FlatButton(
+          onPressed: () => setState(() {
+            tagwidgeton = true;
+          }),
+          child: Align(
+            child: Text(
+              "여기를 눌러 새로운 소식을 농가들과 나눠보세요.",
+              style: TextStyle(
+                fontFamily: "SCDream",
+                fontWeight: FontWeight.w300,
+                fontSize: 15,
+                color: Color(0x44000000),
+              ),
+            ),
+            alignment: Alignment.centerLeft,
+          ),
+        ),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
-    if (_chooseTag == ChooseTag.yes) {}
-    if (tagcheck == true) {
-      tagField = _tagwidget();
+    if (tagwidgeton == false && titlechange == false) {
+      mainview = _mainWidget();
+    } else if (tagwidgeton == true && representtagon == false && titlechange == false ) {
+      mainview = _mainWidget() + _tagwidget();
+    } else if (tagwidgeton == false && titlechange == true){
+      mainview = _c_mainWidget();
+    }else if(tagwidgeton == true && representtagon == false && titlechange == true  ){
+      mainview = _c_mainWidget() + _tagwidget();
+    }
+    else if (representtagon == true) {
+      mainview = _representTag();
     }
 
     return Scaffold(
@@ -54,11 +289,11 @@ class _QusetionPostState extends State<QuestionPost> {
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.07,
-              child: Stack(
-                overflow: Overflow.visible,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Positioned(
-                    left: 0,
+                  Align(
+                    alignment: Alignment.centerLeft,
                     //top: MediaQuery.of(context).size.height * 0.02,
                     child: IconButton(
                       icon: Icon(
@@ -68,60 +303,76 @@ class _QusetionPostState extends State<QuestionPost> {
                       onPressed: () {},
                     ),
                   ),
-                  Positioned(
-                    top: MediaQuery.of(context).size.height * 0.02,
-                    left: MediaQuery.of(context).size.width * 0.35,
+                  Expanded(
                     child: Container(
-                      //width: 200,
-                      child: Center(
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            //width: 200,
+                            height: 30,
+                            child: Center(
+                              child: Text(
+                                titletext,
+                                style: TextStyle(
+                                  fontFamily: "SCDream",
+                                  fontWeight: FontWeight.w500,
+                                  color: mainColor,
+                                  fontSize: 20.0,
+                                  letterSpacing: 1.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  width: 1.0,
+                                  color: mainColor,
+                                ),
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.autorenew,
+                              color: mainColor,
+                            ),
+                            onPressed: () => setState(() {
+                              if (!titlechange) {
+                                titletext = "커뮤니티";
+                                titlechange = true;
+                                mainview = _c_mainWidget();
+                              } else {
+                                titletext = "질문게시글";
+                                titlechange = false;
+                                mainview = _mainWidget();
+                              }
+                              tagwidgeton = false;
+                              representtagon = false;
+                            }),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 70,
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: FlatButton(
+                        onPressed: () {
+                          _showDialog();
+                        },
                         child: Text(
-                          "질문게시글",
+                          "완료",
                           style: TextStyle(
                             fontFamily: "SCDream",
-                            fontWeight: FontWeight.w500,
-                            color: mainColor,
-                            fontSize: 20.0,
-                            letterSpacing: 1.0,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            width: 1.0,
+                            fontWeight: FontWeight.w300,
+                            fontSize: 18.0,
                             color: mainColor,
                           ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    //top: MediaQuery.of(context).size.height * 0.02,
-                    left: MediaQuery.of(context).size.width * 0.58,
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.autorenew,
-                        color: mainColor,
-                      ),
-                      onPressed: () {},
-                    ),
-                  ),
-                  Positioned(
-                    width: 70,
-                    //top: MediaQuery.of(context).size.height * 0.02,
-                    right: 0,
-                    child: FlatButton(
-                      onPressed: () {
-                        _showDialog();
-                      },
-                      child: Text(
-                        "완료",
-                        style: TextStyle(
-                          fontFamily: "SCDream",
-                          fontWeight: FontWeight.w300,
-                          fontSize: 18.0,
-                          color: mainColor,
                         ),
                       ),
                     ),
@@ -137,54 +388,9 @@ class _QusetionPostState extends State<QuestionPost> {
                 ),
               ),
             ),
-            Container(
-              padding: EdgeInsets.only(left: 20),
-              child: TextField(
-                style: TextStyle(
-                  fontFamily: "SCDream",
-                  fontWeight: FontWeight.w400,
-                  fontSize: 18,
-                ),
-                decoration: InputDecoration.collapsed(
-                    hintText: "제목",
-                    hintStyle: TextStyle(
-                      color: Color(0xFF999999),
-                    )),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Container(
-                height: 0.5,
-                //width: MediaQuery.of(context).size.width * 0.95,
-                color: Color(0x66000000),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 5),
-              child: FlatButton(
-                onPressed: () => setState(
-                  () {
-                    tagField = _tagwidget();
-                  },
-                ),
-                child: Align(
-                  child: Text(
-                    "여기를 눌러 새로운 소식을 농가들과 나눠보세요.",
-                    style: TextStyle(
-                      fontFamily: "SCDream",
-                      fontWeight: FontWeight.w300,
-                      fontSize: 15,
-                      color: Color(0x40000000),
-                    ),
-                  ),
-                  alignment: Alignment.centerLeft,
-                ),
-              ),
-            ),
             Column(
-              children: tagField ?? <Widget>[],
-            )
+              children: mainview ?? <Widget>[],
+            ),
           ],
         ),
       ),
