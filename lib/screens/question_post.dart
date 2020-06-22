@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moo/components/circular_button.dart';
 
-
 class QuestionPost extends StatefulWidget {
   QuestionPost({Key key}) : super(key: key);
 
@@ -21,12 +20,12 @@ class _QusetionPostState extends State<QuestionPost> {
   bool representtagon = false;
   bool tagwidgeton = false;
   bool titlechange = false;
+  bool finishTagSelected = false;
 
   String titletext = "질문게시글";
 
   List<Widget> mainview = [];
-  List<Widget> tagview = [];
-  List<Widget> writevie = [];
+  List<Widget> tagSelectedList = [];
 
   _tagwidget() {
     return <Widget>[
@@ -108,135 +107,207 @@ class _QusetionPostState extends State<QuestionPost> {
 
     return <Widget>[
       SizedBox(height: 30.0),
-      Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.2,
-        decoration: BoxDecoration(
-          color: Color(0x11000000),
-        ),
-        child: Column(
-          children: <Widget>[
-            Align(
-              child: Padding(
-                padding: EdgeInsets.only(left: 15, top: 18, bottom: 18),
-                child: Text(
-                  "대표태그",
-                  style: TextStyle(
-                    fontSize: 15.0,
-                    color: Color(0x66000000),
-                    fontFamily: "SCDream",
-                    fontWeight: FontWeight.w300,
+      Column(
+        children: <Widget>[
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.2,
+            decoration: BoxDecoration(
+              color: Color(0x11000000),
+            ),
+            child: Column(
+              children: <Widget>[
+                Align(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 15, top: 18, bottom: 18),
+                    child: Text(
+                      "대표태그",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        color: Color(0x66000000),
+                        fontFamily: "SCDream",
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
                   ),
+                  alignment: Alignment.centerLeft,
+                ),
+                Row(
+                  children: <Widget>[
+                    Container(
+                      width: 85,
+                      padding: EdgeInsets.only(left: 15, bottom: 5),
+                      child: CircularButton(
+                        "사료",
+                        value: TagType.feed,
+                        textStyle: tagTextStyle,
+                        groupValue: _tagType,
+                        multichoice: true,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                        onTap: () => setState(() {
+                          _tagType = TagType.feed;
+                          tagSelectedList.add(widget);
+                        }),
+                      ),
+                    ),
+                    Container(
+                      width: 85,
+                      padding: EdgeInsets.only(left: 5, bottom: 5),
+                      child: CircularButton(
+                        "축사이야기",
+                        value: TagType.story,
+                        textStyle: tagTextStyle,
+                        groupValue: _tagType,
+                        multichoice: true,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                        onTap: () => setState(() {
+                          _tagType = TagType.story;
+                        }),
+                      ),
+                    ),
+                    Container(
+                      width: 85,
+                      padding: EdgeInsets.only(left: 5, bottom: 5),
+                      child: CircularButton(
+                        "질병",
+                        value: TagType.disease,
+                        textStyle: tagTextStyle,
+                        groupValue: _tagType,
+                        multichoice: true,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                        onTap: () => setState(() {
+                          _tagType = TagType.disease;
+                        }),
+                      ),
+                    ),
+                    Container(
+                      width: 85,
+                      padding: EdgeInsets.only(left: 5, bottom: 5),
+                      child: CircularButton(
+                        "사양",
+                        value: TagType.sayang,
+                        textStyle: tagTextStyle,
+                        groupValue: _tagType,
+                        multichoice: true,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                        onTap: () => setState(() {
+                          _tagType = TagType.sayang;
+                        }),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Container(
+                      width: 85,
+                      padding: EdgeInsets.only(left: 15, bottom: 5),
+                      child: CircularButton(
+                        "개량",
+                        value: TagType.gaelyang,
+                        textStyle: tagTextStyle,
+                        groupValue: _tagType,
+                        multichoice: true,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                        onTap: () => setState(() {
+                          _tagType = TagType.gaelyang;
+                        }),
+                      ),
+                    ),
+                    Container(
+                      width: 85,
+                      padding: EdgeInsets.only(left: 5, bottom: 5),
+                      child: CircularButton(
+                        "시설",
+                        value: TagType.facility,
+                        textStyle: tagTextStyle,
+                        groupValue: _tagType,
+                        multichoice: true,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                        onTap: () => setState(() {
+                          _tagType = TagType.facility;
+                        }),
+                      ),
+                    ),
+                    Container(
+                      width: 85,
+                      padding: EdgeInsets.only(left: 5, bottom: 5),
+                      child: CircularButton(
+                        "제품",
+                        value: TagType.product,
+                        textStyle: tagTextStyle,
+                        groupValue: _tagType,
+                        multichoice: true,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                        onTap: () => setState(() {
+                          _tagType = TagType.product;
+                        }),
+                      ),
+                    ),
+                    Container(
+                      width: 85,
+                      padding: EdgeInsets.only(left: 5, bottom: 5),
+                      child: CircularButton(
+                        "기타",
+                        value: TagType.etc,
+                        textStyle: tagTextStyle,
+                        groupValue: _tagType,
+                        multichoice: true,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+                        onTap: () => setState(() {
+                          _tagType = TagType.etc;
+                        }),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 10.0),
+          Container(
+            child: Padding(
+              padding: EdgeInsets.only(left: 15, right: 15),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                reverse: true,
+                child: TextField(
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 10,
+                  
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                  ),
+                  cursorColor: Colors.black,
                 ),
               ),
-              alignment: Alignment.centerLeft,
             ),
-            Row(
-              children: <Widget>[
-                Container(
-                  width: 85,
-                  padding: EdgeInsets.only(left: 15, bottom: 5),
-                  child: CircularButton(
-                    "사료",
-                    value: TagType.feed,
-                    textStyle: tagTextStyle,
-                    groupValue: _tagType,
-                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
-                    onTap: () {},
-                  ),
-                ),
-                Container(
-                  width: 85,
-                  padding: EdgeInsets.only(left: 5, bottom: 5),
-                  child: CircularButton(
-                    "축사이야기",
-                    value: TagType.story,
-                    textStyle: tagTextStyle,
-                    groupValue: _tagType,
-                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
-                    onTap: () {},
-                  ),
-                ),
-                Container(
-                  width: 85,
-                  padding: EdgeInsets.only(left: 5, bottom: 5),
-                  child: CircularButton(
-                    "질병",
-                    value: TagType.disease,
-                    textStyle: tagTextStyle,
-                    groupValue: _tagType,
-                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
-                    onTap: () {},
-                  ),
-                ),
-                Container(
-                  width: 85,
-                  padding: EdgeInsets.only(left: 5, bottom: 5),
-                  child: CircularButton(
-                    "사양",
-                    value: TagType.sayang,
-                    textStyle: tagTextStyle,
-                    groupValue: _tagType,
-                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
-                    onTap: () {},
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Container(
-                  width: 85,
-                  padding: EdgeInsets.only(left: 15, bottom: 5),
-                  child: CircularButton(
-                    "개량",
-                    value: TagType.gaelyang,
-                    textStyle: tagTextStyle,
-                    groupValue: _tagType,
-                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
-                    onTap: () {},
-                  ),
-                ),
-                Container(
-                  width: 85,
-                  padding: EdgeInsets.only(left: 5, bottom: 5),
-                  child: CircularButton(
-                    "시설",
-                    value: TagType.facility,
-                    textStyle: tagTextStyle,
-                    groupValue: _tagType,
-                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
-                    onTap: () {},
-                  ),
-                ),
-                Container(
-                  width: 85,
-                  padding: EdgeInsets.only(left: 5, bottom: 5),
-                  child: CircularButton(
-                    "제품",
-                    value: TagType.product,
-                    textStyle: tagTextStyle,
-                    groupValue: _tagType,
-                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
-                    onTap: () {},
-                  ),
-                ),
-                Container(
-                  width: 85,
-                  padding: EdgeInsets.only(left: 5, bottom: 5),
-                  child: CircularButton(
-                    "기타",
-                    value: TagType.etc,
-                    textStyle: tagTextStyle,
-                    groupValue: _tagType,
-                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
-                    onTap: () {},
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
+          ),
+        ],
+      ),
+    ];
+  }
+
+  _tagSelected() {
+    return <Widget>[
+      SizedBox(height: 15.0),
+      Column(
+        children: <Widget>[
+          Row(
+            children: tagSelectedList ?? <Widget>[],
+          ),
+          Container(
+            child: TextField(),
+          ),
+        ],
       ),
     ];
   }
@@ -270,15 +341,20 @@ class _QusetionPostState extends State<QuestionPost> {
   Widget build(BuildContext context) {
     if (tagwidgeton == false && titlechange == false) {
       mainview = _mainWidget();
-    } else if (tagwidgeton == true && representtagon == false && titlechange == false ) {
+    } else if (tagwidgeton == true &&
+        representtagon == false &&
+        titlechange == false) {
       mainview = _mainWidget() + _tagwidget();
-    } else if (tagwidgeton == false && titlechange == true){
+    } else if (tagwidgeton == false && titlechange == true) {
       mainview = _c_mainWidget();
-    }else if(tagwidgeton == true && representtagon == false && titlechange == true  ){
+    } else if (tagwidgeton == true &&
+        representtagon == false &&
+        titlechange == true) {
       mainview = _c_mainWidget() + _tagwidget();
-    }
-    else if (representtagon == true) {
+    } else if (representtagon == true) {
       mainview = _representTag();
+    } else if (finishTagSelected == true) {
+      mainview = _tagSelected();
     }
 
     return Scaffold(
@@ -300,7 +376,9 @@ class _QusetionPostState extends State<QuestionPost> {
                         Icons.close,
                         color: mainColor,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        _showDialog();
+                      },
                     ),
                   ),
                   Expanded(
