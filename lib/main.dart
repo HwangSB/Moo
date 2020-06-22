@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color.fromARGB(255, 0, 136, 255)
       ),
-      home: QuestionPost(),
+      home: MyPage(),
       debugShowCheckedModeBanner: false,
     );
   }
