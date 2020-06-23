@@ -4,6 +4,7 @@ import 'package:moo/screens/auction_price_container.dart';
 import 'package:moo/screens/main_container.dart';
 import 'package:moo/screens/community_container.dart';
 import 'package:moo/screens/question_post.dart';
+import 'package:moo/screens/mypage.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key}) : super(key: key);
@@ -22,6 +23,7 @@ class _MainPageState extends State<MainPage> {
     'main': MainContainer(),
     'auction': AuctionPriceContainer(),
     'community': CommunityContainer(),
+    'mypage': MyPage(),
   };
 
   String appBarText;
@@ -215,7 +217,9 @@ class _MainPageState extends State<MainPage> {
             ),
             onPressed: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => QuestionPost()),
+                MaterialPageRoute(builder: (context) {
+                  return QuestionPost();
+                }),
               );
             },
           ),
@@ -265,7 +269,12 @@ class _MainPageState extends State<MainPage> {
                 IconButton(
                   iconSize: 30.0,
                   icon: Icon(Icons.person),
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      appBarText = '';
+                      currentContainer = containers['mypage'];
+                    });
+                  },
                 )
               ],
             ),

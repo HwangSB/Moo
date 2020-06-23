@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moo/components/circular_button.dart';
+import 'package:moo/screens/main_page.dart';
 
 class QuestionPost extends StatefulWidget {
   QuestionPost({Key key}) : super(key: key);
@@ -9,13 +10,12 @@ class QuestionPost extends StatefulWidget {
 }
 
 enum ChooseTag { yes, no }
-enum TagType { feed, story, disease, sayang, gaelyang, facility, product, etc }
+enum TagTypes { feed, story, disease, sayang, gaelyang, facility, product, etc }
 
 class _QusetionPostState extends State<QuestionPost> {
-  final mainColor = Color(0xFF0088FF);
   final fabGradient = [Color(0xFF0088FF), Color(0xFF3F44D9)];
   ChooseTag _chooseTag;
-  TagType _tagType;
+  TagTypes _TagTypes;
 
   bool representtagon = false;
   bool tagwidgeton = false;
@@ -139,14 +139,14 @@ class _QusetionPostState extends State<QuestionPost> {
                       padding: EdgeInsets.only(left: 15, bottom: 5),
                       child: CircularButton(
                         "사료",
-                        value: TagType.feed,
+                        value: TagTypes.feed,
                         textStyle: tagTextStyle,
-                        groupValue: _tagType,
+                        groupValue: _TagTypes,
                         multichoice: true,
                         padding:
                             EdgeInsets.symmetric(horizontal: 2, vertical: 6),
                         onTap: () => setState(() {
-                          _tagType = TagType.feed;
+                          _TagTypes = TagTypes.feed;
                           tagSelectedList.add(widget);
                         }),
                       ),
@@ -156,14 +156,14 @@ class _QusetionPostState extends State<QuestionPost> {
                       padding: EdgeInsets.only(left: 5, bottom: 5),
                       child: CircularButton(
                         "축사이야기",
-                        value: TagType.story,
+                        value: TagTypes.story,
                         textStyle: tagTextStyle,
-                        groupValue: _tagType,
+                        groupValue: _TagTypes,
                         multichoice: true,
                         padding:
                             EdgeInsets.symmetric(horizontal: 2, vertical: 6),
                         onTap: () => setState(() {
-                          _tagType = TagType.story;
+                          _TagTypes = TagTypes.story;
                         }),
                       ),
                     ),
@@ -172,14 +172,14 @@ class _QusetionPostState extends State<QuestionPost> {
                       padding: EdgeInsets.only(left: 5, bottom: 5),
                       child: CircularButton(
                         "질병",
-                        value: TagType.disease,
+                        value: TagTypes.disease,
                         textStyle: tagTextStyle,
-                        groupValue: _tagType,
+                        groupValue: _TagTypes,
                         multichoice: true,
                         padding:
                             EdgeInsets.symmetric(horizontal: 2, vertical: 6),
                         onTap: () => setState(() {
-                          _tagType = TagType.disease;
+                          _TagTypes = TagTypes.disease;
                         }),
                       ),
                     ),
@@ -188,14 +188,14 @@ class _QusetionPostState extends State<QuestionPost> {
                       padding: EdgeInsets.only(left: 5, bottom: 5),
                       child: CircularButton(
                         "사양",
-                        value: TagType.sayang,
+                        value: TagTypes.sayang,
                         textStyle: tagTextStyle,
-                        groupValue: _tagType,
+                        groupValue: _TagTypes,
                         multichoice: true,
                         padding:
                             EdgeInsets.symmetric(horizontal: 2, vertical: 6),
                         onTap: () => setState(() {
-                          _tagType = TagType.sayang;
+                          _TagTypes = TagTypes.sayang;
                         }),
                       ),
                     ),
@@ -208,14 +208,14 @@ class _QusetionPostState extends State<QuestionPost> {
                       padding: EdgeInsets.only(left: 15, bottom: 5),
                       child: CircularButton(
                         "개량",
-                        value: TagType.gaelyang,
+                        value: TagTypes.gaelyang,
                         textStyle: tagTextStyle,
-                        groupValue: _tagType,
+                        groupValue: _TagTypes,
                         multichoice: true,
                         padding:
                             EdgeInsets.symmetric(horizontal: 2, vertical: 6),
                         onTap: () => setState(() {
-                          _tagType = TagType.gaelyang;
+                          _TagTypes = TagTypes.gaelyang;
                         }),
                       ),
                     ),
@@ -224,14 +224,14 @@ class _QusetionPostState extends State<QuestionPost> {
                       padding: EdgeInsets.only(left: 5, bottom: 5),
                       child: CircularButton(
                         "시설",
-                        value: TagType.facility,
+                        value: TagTypes.facility,
                         textStyle: tagTextStyle,
-                        groupValue: _tagType,
+                        groupValue: _TagTypes,
                         multichoice: true,
                         padding:
                             EdgeInsets.symmetric(horizontal: 2, vertical: 6),
                         onTap: () => setState(() {
-                          _tagType = TagType.facility;
+                          _TagTypes = TagTypes.facility;
                         }),
                       ),
                     ),
@@ -240,14 +240,14 @@ class _QusetionPostState extends State<QuestionPost> {
                       padding: EdgeInsets.only(left: 5, bottom: 5),
                       child: CircularButton(
                         "제품",
-                        value: TagType.product,
+                        value: TagTypes.product,
                         textStyle: tagTextStyle,
-                        groupValue: _tagType,
+                        groupValue: _TagTypes,
                         multichoice: true,
                         padding:
                             EdgeInsets.symmetric(horizontal: 2, vertical: 6),
                         onTap: () => setState(() {
-                          _tagType = TagType.product;
+                          _TagTypes = TagTypes.product;
                         }),
                       ),
                     ),
@@ -256,14 +256,14 @@ class _QusetionPostState extends State<QuestionPost> {
                       padding: EdgeInsets.only(left: 5, bottom: 5),
                       child: CircularButton(
                         "기타",
-                        value: TagType.etc,
+                        value: TagTypes.etc,
                         textStyle: tagTextStyle,
-                        groupValue: _tagType,
+                        groupValue: _TagTypes,
                         multichoice: true,
                         padding:
                             EdgeInsets.symmetric(horizontal: 2, vertical: 6),
                         onTap: () => setState(() {
-                          _tagType = TagType.etc;
+                          _TagTypes = TagTypes.etc;
                         }),
                       ),
                     ),
@@ -282,7 +282,6 @@ class _QusetionPostState extends State<QuestionPost> {
                 child: TextField(
                   keyboardType: TextInputType.multiline,
                   maxLines: 10,
-                  
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                   ),
@@ -323,6 +322,7 @@ class _QusetionPostState extends State<QuestionPost> {
           child: Align(
             child: Text(
               "여기를 눌러 새로운 소식을 농가들과 나눠보세요.",
+              //communityDefaultText,
               style: TextStyle(
                 fontFamily: "SCDream",
                 fontWeight: FontWeight.w300,
@@ -370,11 +370,10 @@ class _QusetionPostState extends State<QuestionPost> {
                 children: <Widget>[
                   Align(
                     alignment: Alignment.centerLeft,
-                    //top: MediaQuery.of(context).size.height * 0.02,
                     child: IconButton(
                       icon: Icon(
                         Icons.close,
-                        color: mainColor,
+                        color: Theme.of(context).primaryColor,
                       ),
                       onPressed: () {
                         _showDialog();
@@ -388,7 +387,6 @@ class _QusetionPostState extends State<QuestionPost> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Container(
-                            //width: 200,
                             height: 30,
                             child: Center(
                               child: Text(
@@ -396,7 +394,7 @@ class _QusetionPostState extends State<QuestionPost> {
                                 style: TextStyle(
                                   fontFamily: "SCDream",
                                   fontWeight: FontWeight.w500,
-                                  color: mainColor,
+                                  color: Theme.of(context).primaryColor,
                                   fontSize: 20.0,
                                   letterSpacing: 1.0,
                                 ),
@@ -407,7 +405,7 @@ class _QusetionPostState extends State<QuestionPost> {
                               border: Border(
                                 bottom: BorderSide(
                                   width: 1.0,
-                                  color: mainColor,
+                                  color: Theme.of(context).primaryColor,
                                 ),
                               ),
                             ),
@@ -415,7 +413,7 @@ class _QusetionPostState extends State<QuestionPost> {
                           IconButton(
                             icon: Icon(
                               Icons.autorenew,
-                              color: mainColor,
+                              color: Theme.of(context).primaryColor,
                             ),
                             onPressed: () => setState(() {
                               if (!titlechange) {
@@ -449,7 +447,7 @@ class _QusetionPostState extends State<QuestionPost> {
                             fontFamily: "SCDream",
                             fontWeight: FontWeight.w300,
                             fontSize: 18.0,
-                            color: mainColor,
+                            color: Theme.of(context).primaryColor,
                           ),
                         ),
                       ),
@@ -485,6 +483,7 @@ class _QusetionPostState extends State<QuestionPost> {
               ),
             ),
             child: FloatingActionButton(
+              heroTag: "btn1",
               onPressed: () {},
               child: Icon(
                 Icons.image,
@@ -510,6 +509,7 @@ class _QusetionPostState extends State<QuestionPost> {
               ),
             ),
             child: FloatingActionButton(
+              heroTag: "btn2",
               onPressed: () {},
               child: Icon(
                 Icons.photo_camera,
@@ -531,7 +531,13 @@ class _QusetionPostState extends State<QuestionPost> {
           content: Text("글쓰기를 종료하시겠습니까?"),
           actions: <Widget>[
             FlatButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) {
+                    return MainPage();
+                  }),
+                );
+              },
               child: Text("예"),
             ),
             FlatButton(

@@ -193,7 +193,7 @@ class _SignupInformationPageState extends State<SignupInformationPage> {
               Flexible(
                 flex: 1,
                 child: CircularButton(
-                  "1 ~ 50",
+                  "1 ~ 49",
                   value: FarmScale.s1,
                   groupValue: _farmScaleGroupValue,
                   textStyle: tagTextStyle,
