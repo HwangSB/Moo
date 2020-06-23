@@ -47,8 +47,10 @@ class _SignupPageState extends State<SignupPage> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    _signupButton("assets/images/signup_page/kakao-logo.png", "카카오 계정으로 쉬운 시작", kakaoColor),
-                    _signupButton("assets/images/signup_page/google-logo.png", "구글 계정으로 쉬운 시작", googleColor)
+                    _signupButton("assets/images/signup_page/kakao-logo.png",
+                        "카카오 계정으로 쉬운 시작", kakaoColor),
+                    _signupButton("assets/images/signup_page/google-logo.png",
+                        "구글 계정으로 쉬운 시작", googleColor)
                   ],
                 ),
               ),
@@ -80,7 +82,11 @@ class _SignupPageState extends State<SignupPage> {
               height: 24,
             ),
             SizedBox(width: 16.0),
-            Text(text, style: TextStyle(fontFamily: "SCDream", fontWeight: FontWeight.w400),),
+            Text(
+              text,
+              style:
+                  TextStyle(fontFamily: "SCDream", fontWeight: FontWeight.w400),
+            ),
           ],
         ),
         onPressed: () {

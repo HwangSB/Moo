@@ -8,15 +8,17 @@ class CircularButton<T> extends StatefulWidget {
   final Color color;
   final TextStyle textStyle;
   final Function onTap;
+  final bool multichoice;
 
-  const CircularButton(this.text,
+  CircularButton(this.text,
       {Key key,
       @required this.value,
       @required this.groupValue,
       this.padding,
       this.color,
       this.textStyle,
-      this.onTap})
+      this.onTap,
+      this.multichoice = false})
       : super(key: key);
 
   @override
@@ -24,13 +26,34 @@ class CircularButton<T> extends StatefulWidget {
 }
 
 class _CircularButtonState<T> extends State<CircularButton<T>> {
+  List selectedList = [];
+  bool check = false;
+  bool clicked = false;
+
   _isSelected() {
-    return widget.value == widget.groupValue;
+    if (!widget.multichoice) {
+      return widget.value == widget.groupValue;
+    } else {
+      if (!clicked) {
+        if (widget.value == widget.groupValue) {
+          clicked = true;
+          selectedList.add(widget.value);
+        }
+      } else {
+        if (widget.value == widget.groupValue) {
+          clicked = false;
+          selectedList.remove(widget.value);
+        }
+      }
+
+      return selectedList.contains(widget.value);
+    }
   }
 
   _getText(BuildContext context) {
     Color currentColor = widget.color ?? Theme.of(context).primaryColor;
-    Color textColor = _isSelected() ? Colors.white : currentColor;
+    Color textColor = check ? Colors.white : currentColor;
+
     TextStyle textStyle;
     if (widget.textStyle == null) {
       textStyle = TextStyle(
@@ -38,8 +61,7 @@ class _CircularButtonState<T> extends State<CircularButton<T>> {
         color: textColor,
         fontWeight: FontWeight.w500,
       );
-    }
-    else {
+    } else {
       textStyle = widget.textStyle.copyWith(color: textColor);
     }
 
@@ -65,7 +87,7 @@ class _CircularButtonState<T> extends State<CircularButton<T>> {
 
   _getDecoration(BuildContext context) {
     Color currentColor = widget.color ?? Theme.of(context).primaryColor;
-    Color backgroundColor = _isSelected() ? currentColor : Colors.white;
+    Color backgroundColor = check ? currentColor : Colors.white;
 
     return BoxDecoration(
       color: backgroundColor,
@@ -79,8 +101,8 @@ class _CircularButtonState<T> extends State<CircularButton<T>> {
 
   @override
   Widget build(BuildContext context) {
+    check = _isSelected();
     Widget current = _getText(context);
-
     current = _getPadding(current);
 
     return Container(

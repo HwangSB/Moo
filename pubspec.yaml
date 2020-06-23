@@ -45,6 +45,7 @@ flutter:
   assets:
    - assets/images/signup_page/kakao-logo.png
    - assets/images/signup_page/google-logo.png
+   - assets/images/profile/cow.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
