@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moo/components/bubble.dart';
 import 'package:moo/components/circular_button.dart';
+import 'package:moo/screens/main_page.dart';
 
 enum FarmType { onGoing, onSchedule }
 enum FarmScale { s1, s2, s3, s4, s5, s6 }
@@ -32,6 +33,24 @@ class _SignupInformationPageState extends State<SignupInformationPage> {
   FarmLocation _farmLocationGroupValue;
 
   List<Widget> informationFields = [];
+
+  _textField(TextStyle style) {
+    return TextField(
+      controller: TextEditingController(),
+      decoration: InputDecoration(
+        isDense: true,
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey[300], width: 1.0),
+          borderRadius: BorderRadius.circular(
+            MediaQuery.of(context).size.width,
+          ),
+        ),
+      ),
+      style: style,
+    );
+  }
 
   _personalInformation() {
     final headTextStyle = TextStyle(
@@ -412,30 +431,11 @@ class _SignupInformationPageState extends State<SignupInformationPage> {
     ];
   }
 
-  _textField(TextStyle style) {
-    return TextField(
-      controller: TextEditingController(),
-      decoration: InputDecoration(
-        isDense: true,
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-        border: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey[300], width: 1.0),
-          borderRadius: BorderRadius.circular(
-            MediaQuery.of(context).size.width,
-          ),
-        ),
-      ),
-      style: style,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     if (_farmTypeGroupValue == FarmType.onGoing) {
       informationFields = _personalInformation() + _farmInformation();
-    }
-    else if (_farmTypeGroupValue == FarmType.onSchedule) {
+    } else if (_farmTypeGroupValue == FarmType.onSchedule) {
       informationFields = _personalInformation();
     }
 
@@ -581,7 +581,11 @@ class _SignupInformationPageState extends State<SignupInformationPage> {
                           ),
                         ),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => MainPage()),
+                        );
+                      },
                     ),
                   ),
                 ],
