@@ -41,7 +41,6 @@ class QuestionCard extends StatelessWidget {
                 ),
               ),
               Column(
-
                 children: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

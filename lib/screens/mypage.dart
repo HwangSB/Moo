@@ -12,10 +12,320 @@ class MyPage extends StatefulWidget {
 }
 
 class _MyPageState extends State<MyPage> {
-  final mainColor = Color(0xFF0088FF);
   final fabGradient = [Color(0xFF0088FF), Color(0xFF3F44D9)];
+  bool checkFree = true;
+  bool checkQuestion = false;
+  int freePostCount = 5;
+  int questPostCount = 0;
+  List<Widget> postsview = [];
 
+  _freePost() {
+    return <Widget>[
+      Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 0.1,
+        padding: EdgeInsets.only(left: 20, top: 20, bottom: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              width: 85,
+              height: 25,
+              child: FlatButton(
+                padding: EdgeInsets.all(0),
+                child: Text(
+                  "자유게시글",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Theme.of(context).primaryColor,
+                    fontFamily: "SCDream",
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+                onPressed: () => setState(() {
+                  checkFree = true;
+                  checkQuestion = false;
+                }),
+              ),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    width: 1.0,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(width: 10.0),
+            Container(
+              width: 85,
+              height: 25,
+              child: FlatButton(
+                padding: EdgeInsets.all(0),
+                child: Text(
+                  "질문게시글",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Color(0x4D000000),
+                    fontFamily: "SCDream",
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+                onPressed: () => setState(() {
+                  checkQuestion = true;
+                  checkFree = false;
+                }),
+              ),
+            ),
+          ],
+        ),
+      ),
+      CommunityCardV2(
+        writer: '지방이네',
+        summary: '어쩌구 저쩌구 머라머라머라dddddddddd\n시간을 되돌리자....',
+        favoriteCount: 0,
+        commentCount: 0,
+      ),
+      SizedBox(height: 20.0),
+    ];
+  }
+
+  _questionPost() {
+    return <Widget>[
+      Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 0.1,
+        padding: EdgeInsets.only(left: 20, top: 20, bottom: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(0),
+              width: 85,
+              height: 25,
+              child: FlatButton(
+                child: Text(
+                  "자유게시글",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Color(0x4D000000),
+                    fontFamily: "SCDream",
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+                onPressed: () => setState(() {
+                  checkFree = true;
+                  checkQuestion = false;
+                }),
+              ),
+            ),
+            SizedBox(width: 10.0),
+            Container(
+              width: 85,
+              height: 25,
+              child: FlatButton(
+                padding: EdgeInsets.all(0),
+                child: Text(
+                  "질문게시글",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Theme.of(context).primaryColor,
+                    fontFamily: "SCDream",
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+                onPressed: () => setState(() {
+                  checkFree = false;
+                  checkQuestion = true;
+                }),
+              ),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    width: 1.0,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ];
+  }
+
+  _noneFreePost() {
+    return <Widget>[
+      Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 0.1,
+        padding: EdgeInsets.only(left: 20, top: 20, bottom: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              width: 85,
+              height: 25,
+              child: FlatButton(
+                padding: EdgeInsets.all(0),
+                child: Text(
+                  "자유게시글",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Theme.of(context).primaryColor,
+                    fontFamily: "SCDream",
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+                onPressed: () => setState(() {
+                  checkFree = true;
+                  checkQuestion = false;
+                }),
+              ),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    width: 1.0,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(width: 10.0),
+            Container(
+              width: 85,
+              height: 25,
+              child: FlatButton(
+                padding: EdgeInsets.all(0),
+                child: Text(
+                  "질문게시글",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Color(0x4D000000),
+                    fontFamily: "SCDream",
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+                onPressed: () => setState(() {
+                  checkFree = false;
+                  checkQuestion = true;
+                }),
+              ),
+            ),
+          ],
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.only(left: 20.0),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            "게시글을 등록해주세요!",
+            style: TextStyle(
+              fontFamily: "SCDream",
+              fontWeight: FontWeight.w300,
+              color: Color(0x4D000000),
+              fontSize: 14,
+            ),
+          ),
+        ),
+      ),
+      SizedBox(height: 20.0),
+    ];
+  }
+  _noneQuestPost() {
+    return <Widget>[
+      Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 0.1,
+        padding: EdgeInsets.only(left: 20, top: 20, bottom: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              width: 85,
+              height: 25,
+              child: FlatButton(
+                padding: EdgeInsets.all(0),
+                child: Text(
+                  "자유게시글",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Color(0x4D000000),
+                    fontFamily: "SCDream",
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+                onPressed: () => setState(() {
+                  checkFree = true;
+                  checkQuestion = false;
+                }),
+              ),
+            ),
+            SizedBox(width: 10.0),
+            Container(
+              padding: EdgeInsets.all(0),
+              width: 85,
+              height: 25,
+              child: FlatButton(
+                padding: EdgeInsets.all(0),
+                child: Text(
+                  "질문게시글",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Theme.of(context).primaryColor,
+                    fontFamily: "SCDream",
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+                onPressed: () => setState(() {
+                  checkFree = false;
+                  checkQuestion = true;
+                }),
+              ),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    width: 1.0,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.only(left: 20.0),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            "게시글을 등록해주세요!",
+            style: TextStyle(
+              fontFamily: "SCDream",
+              fontWeight: FontWeight.w300,
+              color: Color(0x4D000000),
+              fontSize: 14,
+            ),
+          ),
+        ),
+      ),
+      SizedBox(height: 20.0),
+    ];
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (freePostCount == 0 && checkFree) {
+      postsview = _noneFreePost();
+    } else if (questPostCount == 0 && checkQuestion) {
+      postsview = _noneQuestPost();
+    } else if (checkFree && freePostCount > 0) {
+      postsview = _freePost();
+    } else if (checkQuestion && questPostCount > 0) {
+      postsview = _questionPost();
+    }
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -30,7 +340,7 @@ class _MyPageState extends State<MyPage> {
                       child: IconButton(
                         icon: Icon(
                           Icons.arrow_back,
-                          color: mainColor,
+                          color: Theme.of(context).primaryColor,
                         ),
                         onPressed: () {
                           Navigator.of(context).push(
@@ -47,7 +357,7 @@ class _MyPageState extends State<MyPage> {
                       child: IconButton(
                         icon: Icon(
                           Icons.edit,
-                          color: mainColor,
+                          color: Theme.of(context).primaryColor,
                         ),
                         onPressed: () {
                           Navigator.of(context).push(
@@ -63,7 +373,7 @@ class _MyPageState extends State<MyPage> {
                       child: IconButton(
                         icon: Icon(
                           Icons.notifications_none,
-                          color: mainColor,
+                          color: Theme.of(context).primaryColor,
                         ),
                         onPressed: () {},
                       ),
@@ -81,7 +391,7 @@ class _MyPageState extends State<MyPage> {
                 ),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: mainColor,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
               Container(
@@ -90,7 +400,7 @@ class _MyPageState extends State<MyPage> {
                   "나의 프로필",
                   style: TextStyle(
                     fontFamily: "SCDream",
-                    color: mainColor,
+                    color: Theme.of(context).primaryColor,
                     fontSize: 18.0,
                     fontWeight: FontWeight.w500,
                   ),
@@ -105,7 +415,7 @@ class _MyPageState extends State<MyPage> {
                   "경기도 부천",
                   style: TextStyle(
                     fontFamily: "SCDream",
-                    color: mainColor,
+                    color: Theme.of(context).primaryColor,
                     fontSize: 14.0,
                     fontWeight: FontWeight.w300,
                   ),
@@ -123,7 +433,7 @@ class _MyPageState extends State<MyPage> {
                       height: MediaQuery.of(context).size.width * 0.07,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: mainColor,
+                        color: Theme.of(context).primaryColor,
                         image: DecorationImage(
                           image: AssetImage("assets/images/profile/cow.png"),
                           fit: BoxFit.fill,
@@ -165,7 +475,7 @@ class _MyPageState extends State<MyPage> {
                       }),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: mainColor,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                     Padding(
@@ -225,7 +535,7 @@ class _MyPageState extends State<MyPage> {
                       textAlign: TextAlign.center,
                     ),
                     decoration: BoxDecoration(
-                      color: mainColor,
+                      color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.all(Radius.circular(7)),
                     ),
                   ),
@@ -262,62 +572,8 @@ class _MyPageState extends State<MyPage> {
                 ),
               ),
               SizedBox(height: 10),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.1,
-                padding: EdgeInsets.only(left: 20, top: 20, bottom: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      width: 88,
-                      height: 25,
-                      child: FlatButton(
-                        child: Text(
-                          "커뮤니티",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: mainColor,
-                            fontFamily: "SCDream",
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                        onPressed: () {},
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            width: 1.0,
-                            color: mainColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(
-                        left: 10,
-                      ),
-                      child: FlatButton(
-                        child: Text(
-                          "질문게시글",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Color(0x4D000000),
-                            fontFamily: "SCDream",
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                        onPressed: () {},
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              CommunityCardV2(
-                writer: '지방이네',
-                summary: '어쩌구 저쩌구 머라머라머라dddddddddd\n시간을 되돌리자....',
-                favoriteCount: 0,
-                commentCount: 0,
+              Column(
+                children: postsview ?? <Widget>[],
               ),
             ],
           ),

@@ -15,8 +15,12 @@ class CommunityCardV2 extends StatelessWidget {
   }) : super(key: key);
 
   void choiceAction(String choice) {
-    print('aaa');
+    switch (choice){
+      case "수정하기":
+        
+    }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -72,53 +76,105 @@ class CommunityCardV2 extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 16.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Column(
                     children: <Widget>[
-                      Text(
-                        '$summary',
-                        style: TextStyle(
-                          fontFamily: 'SCDream',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14.0,
-                          color: Colors.black87,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            '$summary',
+                            style: TextStyle(
+                              fontFamily: 'SCDream',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14.0,
+                              color: Colors.black87,
+                            ),
+                          ),
+                          Container(
+                            width: 25,
+                            padding: EdgeInsets.only(right: 0),
+                            //alignment: Alignment.centerRight,
+                            child: PopupMenuButton(
+                              onSelected: choiceAction,
+                              color: Colors.white,
+                              itemBuilder: (context) => [
+                                PopupMenuItem(
+                                  child: Text(
+                                    "수정하기",
+                                    style: TextStyle(
+                                      fontFamily: 'SCDream',
+                                      fontWeight: FontWeight.w300,
+                                      color: Color(0x66000000),
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  value: "edit",
+                                ),
+                                PopupMenuItem(
+                                  child: Text(
+                                    "삭제하기",
+                                    style: TextStyle(
+                                      fontFamily: 'SCDream',
+                                      fontWeight: FontWeight.w300,
+                                      color: Color(0x66000000),
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  value: "delete",
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                       Container(
-                        width: 25,
-                        padding: EdgeInsets.only(right: 0),
-                        //alignment: Alignment.centerRight,
-                        child: PopupMenuButton(
-                          //onSelected: choiceAction,
-                          color: Colors.white,
-                          itemBuilder: (context) => [
-                            PopupMenuItem(
-                              child: Text(
-                                "수정하기",
-                                style: TextStyle(
-                                  fontFamily: 'SCDream',
-                                  fontWeight: FontWeight.w300,
-                                  color: Color(0x66000000),
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              value: "edit",
-                            ),
-                            PopupMenuItem(
-                              child: Text(
-                                "삭제하기",
-                                style: TextStyle(
-                                  fontFamily: 'SCDream',
-                                  fontWeight: FontWeight.w300,
-                                  color: Color(0x66000000),
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              value: "delete",
-                            ),
-                          ],
+                        width: MediaQuery.of(context).size.width,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFBCE0FD),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(7),
+                          ),
                         ),
                       ),
+                      SizedBox(height:5.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.3 ,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFBCE0FD),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(7),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width:2.0),
+                          Container(
+                            width: MediaQuery.of(context).size.width *0.3,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFBCE0FD),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(7),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width:2.0),
+                          Container(
+                            width: MediaQuery.of(context).size.width *0.3,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFBCE0FD),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(7),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                   SizedBox(height: 16.0),
