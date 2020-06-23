@@ -313,15 +313,11 @@ class _MyPageState extends State<MyPage> {
                   ],
                 ),
               ),
-              Row(
-                children: <Widget>[
-                  CommunityCardV2(
-                    writer: '지방이네',
-                    summary: '어쩌구 저쩌구 머라머라머라dddddddddd\n시간을 되돌리자....',
-                    favoriteCount: 0,
-                    commentCount: 0,
-                  ),
-                ],
+              CommunityCardV2(
+                writer: '지방이네',
+                summary: '어쩌구 저쩌구 머라머라머라dddddddddd\n시간을 되돌리자....',
+                favoriteCount: 0,
+                commentCount: 0,
               ),
             ],
           ),
