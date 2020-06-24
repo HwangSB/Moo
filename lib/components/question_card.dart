@@ -7,20 +7,70 @@ class QuestionCard extends StatelessWidget {
   final Widget tag;
   final num favoriteCount;
   final num commentCount;
+  final int checkMy; //0이면 남, 1이면 내꺼
 
-  const QuestionCard({
-    Key key,
-    this.title,
-    this.contents,
-    this.tag,
-    this.favoriteCount,
-    this.commentCount,
-  }) : super(key: key);
+  QuestionCard(
+      {Key key,
+      this.title,
+      this.contents,
+      this.tag,
+      this.favoriteCount,
+      this.commentCount,
+      this.checkMy})
+      : super(key: key);
 
+  Widget card;
+
+  _myQuestionCard() {
+    return PopupMenuButton(
+      //onSelected: choiceAction,
+      color: Colors.white,
+      itemBuilder: (context) => [
+        PopupMenuItem(
+          child: Text(
+            "수정하기",
+            style: TextStyle(
+              fontFamily: 'SCDream',
+              fontWeight: FontWeight.w300,
+              color: Color(0x66000000),
+            ),
+            textAlign: TextAlign.center,
+          ),
+          value: "edit",
+        ),
+        PopupMenuItem(
+          child: Text(
+            "삭제하기",
+            style: TextStyle(
+              fontFamily: 'SCDream',
+              fontWeight: FontWeight.w300,
+              color: Color(0x66000000),
+            ),
+            textAlign: TextAlign.center,
+          ),
+          value: "delete",
+        ),
+      ],
+    );
+  }
+
+  _notMyQuestionCard() {
+    return IconButton(
+      icon: Icon(
+        Icons.delete,
+        color: Color(0xFF0088FF),
+      ),
+      onPressed: () {},
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-
+    if (checkMy == 0) {
+      card = _notMyQuestionCard();
+    } else if (checkMy == 1) {
+      card = _myQuestionCard();
+    }
 
     return Container(
       color: Colors.white,
@@ -66,36 +116,7 @@ class QuestionCard extends StatelessWidget {
                                 SizedBox(width: 100.0),
                               ],
                             ),
-                            PopupMenuButton(
-                              //onSelected: choiceAction,
-                              color: Colors.white,
-                              itemBuilder: (context) => [
-                                PopupMenuItem(
-                                  child: Text(
-                                    "수정하기",
-                                    style: TextStyle(
-                                      fontFamily: 'SCDream',
-                                      fontWeight: FontWeight.w300,
-                                      color: Color(0x66000000),
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  value: "edit",
-                                ),
-                                PopupMenuItem(
-                                  child: Text(
-                                    "삭제하기",
-                                    style: TextStyle(
-                                      fontFamily: 'SCDream',
-                                      fontWeight: FontWeight.w300,
-                                      color: Color(0x66000000),
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  value: "delete",
-                                ),
-                              ],
-                            ),
+                            card ////////////
                           ],
                         ),
                         SizedBox(height: 0),

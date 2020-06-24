@@ -5,6 +5,7 @@ import 'package:moo/screens/main_container.dart';
 import 'package:moo/screens/community_container.dart';
 import 'package:moo/screens/question_post.dart';
 import 'package:moo/screens/mypage.dart';
+import 'package:moo/screens/scrap_post.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key}) : super(key: key);
@@ -101,7 +102,15 @@ class _MainPageState extends State<MainPage> {
             ],
           ),
         ),
-        onTap: () {},
+        onTap: () {
+          if (text == '스크랩한 게시글') {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) {
+                return ScrapPost();
+              }),
+            );
+          }
+        },
       ),
     );
   }

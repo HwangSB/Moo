@@ -140,7 +140,7 @@ class _MyPageState extends State<MyPage> {
                   checkFree = false;
                 }),
               ),
-                            decoration: BoxDecoration(
+              decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
                     width: 1.0,
@@ -157,6 +157,7 @@ class _MyPageState extends State<MyPage> {
         contents: "dkdkdkdk",
         favoriteCount: 5,
         commentCount: 5,
+        checkMy: 1,
       ),
       SizedBox(height: 20.0),
     ];
