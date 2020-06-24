@@ -195,7 +195,12 @@ class MainContainer extends StatelessWidget {
                       height: MediaQuery.of(context).size.height * 0.25,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(24.0),
-                        boxShadow: [BoxShadow(offset: Offset(0.0, 3.0), blurRadius: 6.0, color: Colors.black12)],
+                        boxShadow: [
+                          BoxShadow(
+                              offset: Offset(0.0, 3.0),
+                              blurRadius: 6.0,
+                              color: Colors.black12)
+                        ],
                         color: Colors.white,
                       ),
                     ),
