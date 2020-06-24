@@ -173,7 +173,7 @@ class QuestionCard extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
                                 Icon(
-                                  Icons.favorite_border,
+                                  Icons.favorite,
                                   color: Theme.of(context).primaryColor,
                                 ),
                                 SizedBox(width: 4.0),
