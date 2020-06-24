@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:moo/components/community_card_v2.dart';
 import 'package:moo/screens/main_page.dart';
 import 'package:moo/screens/mypage_edit.dart';
+import 'package:moo/components/question_card.dart';
 
 class MyPage extends StatefulWidget {
   MyPage({Key key}) : super(key: key);
@@ -16,7 +17,7 @@ class _MyPageState extends State<MyPage> {
   bool checkFree = true;
   bool checkQuestion = false;
   int freePostCount = 5;
-  int questPostCount = 0;
+  int questPostCount = 5;
   List<Widget> postsview = [];
 
   _freePost() {
@@ -100,10 +101,10 @@ class _MyPageState extends State<MyPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(0),
               width: 85,
               height: 25,
               child: FlatButton(
+                padding: EdgeInsets.all(0),
                 child: Text(
                   "자유게시글",
                   style: TextStyle(
@@ -135,11 +136,11 @@ class _MyPageState extends State<MyPage> {
                   ),
                 ),
                 onPressed: () => setState(() {
-                  checkFree = false;
                   checkQuestion = true;
+                  checkFree = false;
                 }),
               ),
-              decoration: BoxDecoration(
+                            decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
                     width: 1.0,
@@ -151,6 +152,13 @@ class _MyPageState extends State<MyPage> {
           ],
         ),
       ),
+      QuestionCard(
+        title: "제목이다",
+        contents: "dkdkdkdk",
+        favoriteCount: 5,
+        commentCount: 5,
+      ),
+      SizedBox(height: 20.0),
     ];
   }
 
@@ -233,6 +241,7 @@ class _MyPageState extends State<MyPage> {
       SizedBox(height: 20.0),
     ];
   }
+
   _noneQuestPost() {
     return <Widget>[
       Container(

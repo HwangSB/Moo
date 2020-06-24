@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:moo/components/community_card_v2.dart';
+import 'package:moo/components/question_card.dart';
 import 'package:moo/screens/main_page.dart';
 
 void main() => runApp(MyApp());
