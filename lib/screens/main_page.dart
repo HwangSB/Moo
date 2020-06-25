@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
 import 'package:moo/screens/auction_price_container.dart';
+import 'package:moo/screens/favorite_farm.dart';
 import 'package:moo/screens/main_container.dart';
 import 'package:moo/screens/community_container.dart';
 import 'package:moo/screens/question_post.dart';
 import 'package:moo/screens/mypage.dart';
 import 'package:moo/screens/scrap_post.dart';
+import 'package:moo/screens/setting.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key}) : super(key: key);
@@ -107,6 +109,18 @@ class _MainPageState extends State<MainPage> {
             Navigator.of(context).push(
               MaterialPageRoute(builder: (context) {
                 return ScrapPost();
+              }),
+            );
+          } else if (text == '찜한농가') {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) {
+                return FavoriteFarm();
+              }),
+            );
+          } else if (text == '설정') {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) {
+                return Setting();
               }),
             );
           }
