@@ -8,6 +8,7 @@ import 'package:moo/screens/question_post.dart';
 import 'package:moo/screens/mypage.dart';
 import 'package:moo/screens/scrap_post.dart';
 import 'package:moo/screens/setting.dart';
+import 'package:moo/screens/user_guide.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key}) : super(key: key);
@@ -121,6 +122,12 @@ class _MainPageState extends State<MainPage> {
             Navigator.of(context).push(
               MaterialPageRoute(builder: (context) {
                 return Setting();
+              }),
+            );
+          } else if (text == '이용안내') {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) {
+                return UserGuide();
               }),
             );
           }

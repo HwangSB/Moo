@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:moo/screens/main_page.dart';
-import 'package:moo/screens/mypage.dart';
 
 class Setting extends StatefulWidget {
   Setting({Key key}) : super(key: key);
