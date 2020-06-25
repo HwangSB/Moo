@@ -25,7 +25,31 @@ class QuestionCard extends StatelessWidget {
 
   _myQuestionCard(BuildContext context) {
     return PopupMenuButton(
-      //onSelected: choiceAction,
+      onSelected: (value) {
+        if (value == "edit") {
+        } else if (value == "delete") {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                content: Text("삭제하시겠습니까?"),
+                actions: <Widget>[
+                  FlatButton(
+                    onPressed: () {},
+                    child: Text("예"),
+                  ),
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("아니오"),
+                  ),
+                ],
+              );
+            },
+          );
+        }
+      },
       color: Colors.white,
       itemBuilder: (context) => [
         PopupMenuItem(
