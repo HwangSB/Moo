@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moo/components/circular_button.dart';
+import 'package:moo/screens/scrap_post.dart';
 
 class QuestionCard extends StatelessWidget {
   final String title;
@@ -20,8 +21,9 @@ class QuestionCard extends StatelessWidget {
       : super(key: key);
 
   Widget card;
+  List<Widget> scrapList = [];
 
-  _myQuestionCard() {
+  _myQuestionCard(BuildContext context) {
     return PopupMenuButton(
       //onSelected: choiceAction,
       color: Colors.white,
@@ -54,22 +56,49 @@ class QuestionCard extends StatelessWidget {
     );
   }
 
-  _notMyQuestionCard() {
+  _notMyQuestionCard(BuildContext context) {
     return IconButton(
       icon: Icon(
         Icons.delete,
         color: Color(0xFF0088FF),
       ),
-      onPressed: () {},
+      onPressed: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: Text("삭제하시겠습니까?"),
+              actions: <Widget>[
+                FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) {
+                        return ScrapPost();
+                      }),
+                    );
+                  },
+                  child: Text("예"),
+                ),
+                FlatButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text("아니오"),
+                ),
+              ],
+            );
+          },
+        );
+      },
     );
   }
 
   @override
   Widget build(BuildContext context) {
     if (checkMy == 0) {
-      card = _notMyQuestionCard();
+      card = _notMyQuestionCard(context);
     } else if (checkMy == 1) {
-      card = _myQuestionCard();
+      card = _myQuestionCard(context);
     }
 
     return Container(
