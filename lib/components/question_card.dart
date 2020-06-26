@@ -132,7 +132,8 @@ class QuestionCard extends StatelessWidget {
         child: Row(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
               child: Row(
                 children: <Widget>[
                   Align(
@@ -149,7 +150,7 @@ class QuestionCard extends StatelessWidget {
                   SizedBox(width: 10),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.6526,
-                    height: MediaQuery.of(context).size.height * 0.15,
+                    height: MediaQuery.of(context).size.height * 0.14,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
