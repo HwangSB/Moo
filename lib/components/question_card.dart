@@ -5,8 +5,8 @@ class QuestionCard extends StatelessWidget {
   final String title;
   final String contents;
   final Widget tag;
-  final num favoriteCount;
-  final num commentCount;
+  final int favoriteCount;
+  final int commentCount;
   final int checkMy; //0이면 남, 1이면 내꺼
 
   QuestionCard(

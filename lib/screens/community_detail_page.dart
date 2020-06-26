@@ -4,8 +4,8 @@ import 'package:moo/components/circular_button.dart';
 class CommunityDetailPage extends StatefulWidget {
   final String writer;
   final String contents;
-  final num favoriteCount;
-  final num commentCount;
+  final int favoriteCount;
+  final int commentCount;
 
   CommunityDetailPage({
     Key key,
@@ -265,7 +265,7 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
     );
   }
 
-  _comment(String writer, String comment, String date, num favoriteCount) {
+  _comment(String writer, String comment, String date, int favoriteCount) {
     return Container(
       color: Colors.white,
       child: Padding(

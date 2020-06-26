@@ -33,7 +33,7 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    appBarText = '';
+    appBarText = '홈';
     currentContainer = containers['main'];
   }
 
@@ -140,9 +140,9 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
             Divider(height: 0.0),
-            _innerDrawerItem(context, Icons.bookmark, "스크랩한 게시글"),
-            Divider(height: 0.0),
-            _innerDrawerItem(context, Icons.favorite, "찜한농가"),
+            // _innerDrawerItem(context, Icons.bookmark, "스크랩한 게시글"),
+            // Divider(height: 0.0),
+            // _innerDrawerItem(context, Icons.favorite, "찜한농가"),
             Divider(height: 0.0),
             _innerDrawerItem(context, Icons.settings, "설정"),
             Divider(height: 0.0),
@@ -247,7 +247,7 @@ class _MainPageState extends State<MainPage> {
                   icon: Icon(Icons.home),
                   onPressed: () {
                     setState(() {
-                      appBarText = '';
+                      appBarText = '홈';
                       currentContainer = containers['main'];
                     });
                   },

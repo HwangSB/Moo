@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:moo/components/bubble.dart';
 import 'package:moo/components/circular_button.dart';
 import 'package:moo/screens/main_page.dart';
+import 'package:moo/services/rest.dart';
 
 enum FarmType { onGoing, onSchedule }
-enum FarmScale { s1, s2, s3, s4, s5, s6 }
+enum FarmScale { s1, s2, s3, s4 }
 enum FarmLocation {
   gangwon,
   gyeonggi,
@@ -18,7 +19,9 @@ enum FarmLocation {
 }
 
 class SignupInformationPage extends StatefulWidget {
-  SignupInformationPage({Key key}) : super(key: key);
+  final SnsInfo snsInfo;
+
+  SignupInformationPage(this.snsInfo, {Key key}) : super(key: key);
 
   @override
   _SignupInformationPageState createState() => _SignupInformationPageState();
@@ -193,7 +196,7 @@ class _SignupInformationPageState extends State<SignupInformationPage> {
               Flexible(
                 flex: 1,
                 child: CircularButton(
-                  "1 ~ 49",
+                  "1 ~ 19",
                   value: FarmScale.s1,
                   groupValue: _farmScaleGroupValue,
                   textStyle: tagTextStyle,
@@ -206,7 +209,7 @@ class _SignupInformationPageState extends State<SignupInformationPage> {
               Flexible(
                 flex: 1,
                 child: CircularButton(
-                  "50 ~ 99",
+                  "20 ~ 49",
                   value: FarmScale.s2,
                   groupValue: _farmScaleGroupValue,
                   textStyle: tagTextStyle,
@@ -219,7 +222,7 @@ class _SignupInformationPageState extends State<SignupInformationPage> {
               Flexible(
                 flex: 1,
                 child: CircularButton(
-                  "100 ~ 149",
+                  "50 ~ 99",
                   value: FarmScale.s3,
                   groupValue: _farmScaleGroupValue,
                   textStyle: tagTextStyle,
@@ -236,7 +239,7 @@ class _SignupInformationPageState extends State<SignupInformationPage> {
               Flexible(
                 flex: 1,
                 child: CircularButton(
-                  "150 ~ 199",
+                  "100 ~ ",
                   value: FarmScale.s4,
                   groupValue: _farmScaleGroupValue,
                   textStyle: tagTextStyle,
@@ -248,28 +251,12 @@ class _SignupInformationPageState extends State<SignupInformationPage> {
               SizedBox(width: 16.0),
               Flexible(
                 flex: 1,
-                child: CircularButton(
-                  "200 ~ 249",
-                  value: FarmScale.s5,
-                  groupValue: _farmScaleGroupValue,
-                  textStyle: tagTextStyle,
-                  onTap: () => setState(() {
-                    _farmScaleGroupValue = FarmScale.s5;
-                  }),
-                ),
+                child: Container(),
               ),
               SizedBox(width: 16.0),
               Flexible(
                 flex: 1,
-                child: CircularButton(
-                  "250 ~ ",
-                  value: FarmScale.s6,
-                  groupValue: _farmScaleGroupValue,
-                  textStyle: tagTextStyle,
-                  onTap: () => setState(() {
-                    _farmScaleGroupValue = FarmScale.s6;
-                  }),
-                ),
+                child: Container(),
               ),
             ],
           ),
@@ -548,8 +535,9 @@ class _SignupInformationPageState extends State<SignupInformationPage> {
                                       value: FarmType.onSchedule,
                                       groupValue: _farmTypeGroupValue,
                                       onTap: () => setState(() {
-                                        _farmTypeGroupValue =
-                                            FarmType.onSchedule;
+                                        _farmTypeGroupValue = FarmType.onSchedule;
+                                        _farmScaleGroupValue = null;
+                                        _farmLocationGroupValue = null;
                                       }),
                                     ),
                                   ],
@@ -565,7 +553,7 @@ class _SignupInformationPageState extends State<SignupInformationPage> {
                     ),
                   ),
                   Material(
-                    color: Theme.of(context).primaryColor,
+                    color: _isSignUpAble() ? Theme.of(context).primaryColor : Colors.grey[350],
                     child: InkWell(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -581,11 +569,7 @@ class _SignupInformationPageState extends State<SignupInformationPage> {
                           ),
                         ),
                       ),
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => MainPage()),
-                        );
-                      },
+                      onTap: _isSignUpAble() ? () => _signUp() : null,
                     ),
                   ),
                 ],
@@ -594,6 +578,91 @@ class _SignupInformationPageState extends State<SignupInformationPage> {
           ),
         ],
       ),
+    );
+  }
+
+  _isSignUpAble() {
+    if (_farmTypeGroupValue == null) {
+      return false;
+    }
+
+    return _farmTypeGroupValue != null &&
+        _farmScaleGroupValue != null &&
+        _farmLocationGroupValue != null;
+  }
+
+  _signUp() async {
+    var farmTypeString = '';
+    switch (_farmTypeGroupValue) {
+      case FarmType.onGoing:
+        farmTypeString = 'ONGOING';
+        break;
+      case FarmType.onSchedule:
+        farmTypeString = 'ONSCHEDULE';
+        break;
+    }
+
+    var farmScaleString = '';
+    switch (_farmScaleGroupValue) {
+      case FarmScale.s1:
+        farmScaleString = 'TWENTY';
+        break;
+      case FarmScale.s2:
+        farmScaleString = 'FIFTY';
+        break;
+      case FarmScale.s3:
+        farmScaleString = 'HUNDRED';
+        break;
+      case FarmScale.s4:
+        farmScaleString = 'OVER_HUNDRED';
+        break;
+    }
+
+    var farmLocationString = '';
+    switch (_farmLocationGroupValue) {
+      case FarmLocation.gangwon:
+        farmLocationString = 'GANGWON';
+        break;
+      case FarmLocation.gyeonggi:
+        farmLocationString = 'GYEONGGI';
+        break;
+      case FarmLocation.chungbuk:
+        farmLocationString = 'CHUNGBUK';
+        break;
+      case FarmLocation.chungnam:
+        farmLocationString = 'CHUNGNAM';
+        break;
+      case FarmLocation.jeonbuk:
+        farmLocationString = 'JEONBUK';
+        break;
+      case FarmLocation.jeonnam:
+        farmLocationString = 'JEONNAM';
+        break;
+      case FarmLocation.gyeongbuk:
+        farmLocationString = 'GYEONGBUK';
+        break;
+      case FarmLocation.gyeongnam:
+        farmLocationString = 'GYEONGNAM';
+        break;
+      case FarmLocation.jeju:
+        farmLocationString = 'JEJU';
+        break;
+    }
+
+    await RestService.instance.signUp(
+      userType: farmTypeString,
+      nickName: 'nickName',
+      phoneNumber: '010-1234-5678',
+      cowCount: farmScaleString,
+      address: farmLocationString,
+      email: widget.snsInfo.email,
+      snsId: widget.snsInfo.id,
+      snsType: widget.snsInfo.type,
+      userName: widget.snsInfo.name,
+    );
+
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => MainPage()),
     );
   }
 }

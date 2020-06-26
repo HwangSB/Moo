@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class CommunityCardV2 extends StatelessWidget {
   final String writer;
   final String summary;
-  final num favoriteCount;
-  final num commentCount;
+  final int favoriteCount;
+  final int commentCount;
 
   const CommunityCardV2({
     Key key,
