@@ -20,7 +20,7 @@ _questionList() {
       commentCount: 1,
       checkMy: 0,
     ),
-    SizedBox(height: 2.0),
+    SizedBox(height: 1.0),
     QuestionCard(
       title: "둘",
       contents: "내용2",
@@ -28,7 +28,7 @@ _questionList() {
       commentCount: 2,
       checkMy: 0,
     ),
-    SizedBox(height: 2.0),
+    SizedBox(height: 1.0),
   ];
 }
 
