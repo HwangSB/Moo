@@ -32,7 +32,7 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    appBarText = '';
+    appBarText = '홈';
     currentContainer = containers['main'];
   }
 
@@ -238,7 +238,7 @@ class _MainPageState extends State<MainPage> {
                   icon: Icon(Icons.home),
                   onPressed: () {
                     setState(() {
-                      appBarText = '';
+                      appBarText = '홈';
                       currentContainer = containers['main'];
                     });
                   },
@@ -271,7 +271,7 @@ class _MainPageState extends State<MainPage> {
                   icon: Icon(Icons.person),
                   onPressed: () {
                     setState(() {
-                      appBarText = '';
+                      appBarText = '프로필';
                       currentContainer = containers['mypage'];
                     });
                   },

@@ -532,11 +532,8 @@ class _QusetionPostState extends State<QuestionPost> {
           actions: <Widget>[
             FlatButton(
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) {
-                    return MainPage();
-                  }),
-                );
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
               },
               child: Text("예"),
             ),
