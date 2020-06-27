@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moo/components/circular_button.dart';
 import 'package:moo/components/community_card.dart';
+import 'package:moo/screens/community_detail_page.dart';
 import 'package:moo/services/rest.dart';
 
 enum TagType {
@@ -198,9 +199,24 @@ class _CommunityContainerState extends State<CommunityContainer> {
                               children: <Widget>[
                                 CommunityCard(
                                   writer: postInfo[index].nickName,
-                                  summary: postInfo[index].content?.substring(0, 100),
+                                  summary: postInfo[index]
+                                      .content
+                                      ?.substring(0, 100),
                                   favoriteCount: postInfo[index].likeCount,
                                   commentCount: postInfo[index].commentCount,
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            CommunityDetailPage(
+                                          writer: postInfo[index].nickName,
+                                          contents: postInfo[index].content,
+                                          favoriteCount: postInfo[index].likeCount,
+                                          commentCount: postInfo[index].commentCount,
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
                                 SizedBox(height: 16.0),
                               ],

@@ -155,7 +155,8 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
                     ],
                   ),
                   SizedBox(height: 16.0),
-                  _tags(),
+                  // TODO: tag widgets
+                  // _tags(),
                   SizedBox(height: 16.0),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -416,14 +417,7 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
                         color: Theme.of(context).scaffoldBackgroundColor,
                         child: Column(
                           children: <Widget>[
-                            _comment('소!리질러~', '댓글' * 20,
-                                DateTime.now().toString(), 10),
-                            Divider(height: 0.0),
-                            _comment('소!리질러~', '댓글' * 20,
-                                DateTime.now().toString(), 10),
-                            Divider(height: 0.0),
-                            _comment('소!리질러~', '댓글' * 20,
-                                DateTime.now().toString(), 10),
+                            // TODO: comment widget
                           ],
                         ),
                       ),

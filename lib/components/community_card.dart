@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:moo/screens/community_detail_page.dart';
 
 class CommunityCard extends StatelessWidget {
   final String writer;
   final String summary;
   final int favoriteCount;
   final int commentCount;
+  final Function onTap;
 
   const CommunityCard({
     Key key,
@@ -13,6 +13,7 @@ class CommunityCard extends StatelessWidget {
     this.summary,
     this.favoriteCount,
     this.commentCount,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -123,18 +124,7 @@ class CommunityCard extends StatelessWidget {
                   ],
                 ),
               ),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => CommunityDetailPage(
-                      writer: writer,
-                      contents: 'ㅁ리아ㅓㄴㅁ리언미ㅏㄹㄴㅁfdsafdsa' * 20,
-                      favoriteCount: favoriteCount,
-                      commentCount: commentCount,
-                    ),
-                  ),
-                );
-              },
+              onTap: onTap,
             ),
             Divider(height: 0.0),
             Row(
