@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moo/components/circular_button.dart';
 import 'package:moo/components/community_card.dart';
+import 'package:moo/screens/community_detail_page.dart';
+import 'package:moo/services/rest.dart';
 
 enum TagType {
   food,
@@ -30,7 +32,8 @@ class _CommunityContainerState extends State<CommunityContainer> {
         color: Colors.transparent,
         child: InkWell(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -154,65 +157,76 @@ class _CommunityContainerState extends State<CommunityContainer> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   _tags(),
-                  Row(
-                    children: <Widget>[
-                      SizedBox(width: 8.0),
-                      InkWell(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Icon(
-                                Icons.favorite_border,
-                                size: 20.0,
-                                color: Theme.of(context).primaryColor,
-                              ),
-                              Text(
-                                '관심 농가 모아보기',
-                                style: TextStyle(
-                                  fontFamily: 'SCDream',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14.0,
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        onTap: () {},
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   children: <Widget>[
+                  //     SizedBox(width: 8.0),
+                  //     InkWell(
+                  //       child: Padding(
+                  //         padding: const EdgeInsets.all(8.0),
+                  //         child: Row(
+                  //           mainAxisSize: MainAxisSize.min,
+                  //           children: <Widget>[
+                  //             Icon(
+                  //               Icons.favorite_border,
+                  //               size: 20.0,
+                  //               color: Theme.of(context).primaryColor,
+                  //             ),
+                  //             Text(
+                  //               '관심 농가 모아보기',
+                  //               style: TextStyle(
+                  //                 fontFamily: 'SCDream',
+                  //                 fontWeight: FontWeight.w500,
+                  //                 fontSize: 14.0,
+                  //                 color: Theme.of(context).primaryColor,
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       ),
+                  //       onTap: () {},
+                  //     ),
+                  //   ],
+                  // ),
                   SizedBox(height: 8.0),
-                  CommunityCard(
-                    writer: '지방이네',
-                    summary: '어쩌구 저쩌구 머라머라머라\n머라머러랑ㄴ머ㅏㅣㄹㅇ너ㅣ그래 아 개힘들아ㅓ',
-                    favoriteCount: 0,
-                    commentCount: 0,
+                  FutureBuilder(
+                    future: RestService.instance.getCommunityPosts(),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      List<PostInfo> postInfo = snapshot.data;
+                      if (snapshot.hasData) {
+                        return Column(
+                          children: List.generate(postInfo.length, (index) {
+                            return Column(
+                              children: <Widget>[
+                                CommunityCard(
+                                  writer: postInfo[index].nickName,
+                                  summary: postInfo[index]
+                                      .content
+                                      ?.substring(0, 100),
+                                  favoriteCount: postInfo[index].likeCount,
+                                  commentCount: postInfo[index].commentCount,
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            CommunityDetailPage(
+                                          writer: postInfo[index].nickName,
+                                          contents: postInfo[index].content,
+                                          favoriteCount: postInfo[index].likeCount,
+                                          commentCount: postInfo[index].commentCount,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                SizedBox(height: 16.0),
+                              ],
+                            );
+                          }),
+                        );
+                      }
+                      return Container();
+                    },
                   ),
-                  SizedBox(height: 16.0),
-                  CommunityCard(
-                    writer: '지방이네',
-                    summary: '어쩌구 저쩌구 머라머라머라\n머라머러랑ㄴ머ㅏㅣㄹㅇ너ㅣ그래 아 개힘들아ㅓ',
-                    favoriteCount: 0,
-                    commentCount: 0,
-                  ),
-                  SizedBox(height: 16.0),
-                  CommunityCard(
-                    writer: '지방이네',
-                    summary: '어쩌구 저쩌구 머라머라머라\n머라머러랑ㄴ머ㅏㅣㄹㅇ너ㅣ그래 아 개힘들아ㅓ',
-                    favoriteCount: 0,
-                    commentCount: 0,
-                  ),
-                  SizedBox(height: 16.0),
-                  CommunityCard(
-                    writer: '지방이네',
-                    summary: '어쩌구 저쩌구 머라머라머라\n머라머러랑ㄴ머ㅏㅣㄹㅇ너ㅣ그래 아 개힘들아ㅓ',
-                    favoriteCount: 0,
-                    commentCount: 0,
-                  ),
-                  SizedBox(height: 16.0),
                 ],
               ),
             ),

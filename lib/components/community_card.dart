@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:moo/screens/community_detail_page.dart';
 
 class CommunityCard extends StatelessWidget {
   final String writer;
   final String summary;
-  final num favoriteCount;
-  final num commentCount;
+  final int favoriteCount;
+  final int commentCount;
+  final Function onTap;
 
   const CommunityCard({
     Key key,
@@ -13,6 +13,7 @@ class CommunityCard extends StatelessWidget {
     this.summary,
     this.favoriteCount,
     this.commentCount,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -123,18 +124,7 @@ class CommunityCard extends StatelessWidget {
                   ],
                 ),
               ),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => CommunityDetailPage(
-                      writer: writer,
-                      contents: 'ㅁ리아ㅓㄴㅁ리언미ㅏㄹㄴㅁfdsafdsa' * 20,
-                      favoriteCount: favoriteCount,
-                      commentCount: commentCount,
-                    ),
-                  ),
-                );
-              },
+              onTap: onTap,
             ),
             Divider(height: 0.0),
             Row(
@@ -188,39 +178,39 @@ class CommunityCard extends StatelessWidget {
                   ),
                   onTap: () {},
                 ),
-                InkWell(
-                  child: Container(
-                    padding: EdgeInsets.all(8.0),
-                    child: Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.bookmark_border,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        SizedBox(width: 4.0),
-                        Text(
-                          '스크랩',
-                          style: TextStyle(
-                            fontFamily: 'SCDream',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14.0,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  onTap: () {
-                    final snackbar = SnackBar(
-                      content: Text('스크랩 되었습니다'),
-                      action: SnackBarAction(
-                        label: '취소',
-                        onPressed: () {},
-                      ),
-                    );
-                    Scaffold.of(context).showSnackBar(snackbar);
-                  },
-                ),
+                // InkWell(
+                //   child: Container(
+                //     padding: EdgeInsets.all(8.0),
+                //     child: Row(
+                //       children: <Widget>[
+                //         Icon(
+                //           Icons.bookmark_border,
+                //           color: Theme.of(context).primaryColor,
+                //         ),
+                //         SizedBox(width: 4.0),
+                //         Text(
+                //           '스크랩',
+                //           style: TextStyle(
+                //             fontFamily: 'SCDream',
+                //             fontWeight: FontWeight.w500,
+                //             fontSize: 14.0,
+                //             color: Theme.of(context).primaryColor,
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                //   onTap: () {
+                //     final snackbar = SnackBar(
+                //       content: Text('스크랩 되었습니다'),
+                //       action: SnackBarAction(
+                //         label: '취소',
+                //         onPressed: () {},
+                //       ),
+                //     );
+                //     Scaffold.of(context).showSnackBar(snackbar);
+                //   },
+                // ),
               ],
             ),
           ],

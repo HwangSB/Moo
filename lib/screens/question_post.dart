@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moo/components/circular_button.dart';
-import 'package:moo/screens/main_page.dart';
+import 'package:moo/services/rest.dart';
 
 class QuestionPost extends StatefulWidget {
   QuestionPost({Key key}) : super(key: key);
@@ -26,6 +26,9 @@ class _QusetionPostState extends State<QuestionPost> {
 
   List<Widget> mainview = [];
   List<Widget> tagSelectedList = [];
+
+  TextEditingController titleController = TextEditingController();
+  TextEditingController contentController = TextEditingController();
 
   _tagwidget() {
     return <Widget>[
@@ -56,6 +59,7 @@ class _QusetionPostState extends State<QuestionPost> {
       Container(
         padding: EdgeInsets.only(left: 20),
         child: TextField(
+          controller: titleController,
           style: TextStyle(
             fontFamily: "SCDream",
             fontWeight: FontWeight.w400,
@@ -280,6 +284,7 @@ class _QusetionPostState extends State<QuestionPost> {
                 scrollDirection: Axis.vertical,
                 reverse: true,
                 child: TextField(
+                  controller: contentController,
                   keyboardType: TextInputType.multiline,
                   maxLines: 10,
                   decoration: InputDecoration(
@@ -531,17 +536,18 @@ class _QusetionPostState extends State<QuestionPost> {
           content: Text("글쓰기를 종료하시겠습니까?"),
           actions: <Widget>[
             FlatButton(
+              child: Text("예"),
               onPressed: () {
+                RestService.instance.postCommunity('nickname', titleController.text, contentController.text, null);
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
               },
-              child: Text("예"),
             ),
             FlatButton(
+              child: Text("아니오"),
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text("아니오"),
             ),
           ],
         );

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
 import 'package:moo/screens/auction_price_container.dart';
+import 'package:moo/screens/favorite_farm.dart';
 import 'package:moo/screens/main_container.dart';
 import 'package:moo/screens/community_container.dart';
 import 'package:moo/screens/question_post.dart';
 import 'package:moo/screens/mypage.dart';
+import 'package:moo/screens/scrap_post.dart';
+import 'package:moo/screens/setting.dart';
+import 'package:moo/screens/user_guide.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key}) : super(key: key);
@@ -101,7 +105,33 @@ class _MainPageState extends State<MainPage> {
             ],
           ),
         ),
-        onTap: () {},
+        onTap: () {
+          if (text == '스크랩한 게시글') {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) {
+                return ScrapPost();
+              }),
+            );
+          } else if (text == '찜한농가') {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) {
+                return FavoriteFarm();
+              }),
+            );
+          } else if (text == '설정') {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) {
+                return Setting();
+              }),
+            );
+          } else if (text == '이용안내') {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) {
+                return UserGuide();
+              }),
+            );
+          }
+        },
       ),
     );
   }
@@ -131,9 +161,9 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
             Divider(height: 0.0),
-            _innerDrawerItem(context, Icons.bookmark, "스크랩한 게시글"),
-            Divider(height: 0.0),
-            _innerDrawerItem(context, Icons.favorite, "찜한농가"),
+            // _innerDrawerItem(context, Icons.bookmark, "스크랩한 게시글"),
+            // Divider(height: 0.0),
+            // _innerDrawerItem(context, Icons.favorite, "찜한농가"),
             Divider(height: 0.0),
             _innerDrawerItem(context, Icons.settings, "설정"),
             Divider(height: 0.0),

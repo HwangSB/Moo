@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:moo/components/circular_button.dart';
 import 'package:moo/screens/main_page.dart';
 import 'package:moo/screens/mypage.dart';
@@ -22,10 +21,10 @@ class _MyPageEditState extends State<MyPageEdit> {
   };
   LocationTag _locationTag;
   Widget currentContainer;
-  
-  _goMyPage(){
+
+  _goMyPage() {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (context){
+      MaterialPageRoute(builder: (context) {
         return MyPage();
       }),
     );
@@ -56,7 +55,7 @@ class _MyPageEditState extends State<MyPageEdit> {
                           Icons.arrow_back,
                           color: Theme.of(context).primaryColor,
                         ),
-                        onPressed: ()  {
+                        onPressed: () {
                           _goMyPage();
                         },
                       ),

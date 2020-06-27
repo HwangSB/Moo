@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class CommunityCardV2 extends StatelessWidget {
   final String writer;
   final String summary;
-  final num favoriteCount;
-  final num commentCount;
+  final int favoriteCount;
+  final int commentCount;
 
   const CommunityCardV2({
     Key key,
@@ -13,14 +13,6 @@ class CommunityCardV2 extends StatelessWidget {
     this.favoriteCount,
     this.commentCount,
   }) : super(key: key);
-
-  void choiceAction(String choice) {
-    switch (choice){
-      case "수정하기":
-        
-    }
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +87,31 @@ class CommunityCardV2 extends StatelessWidget {
                             padding: EdgeInsets.only(right: 0),
                             //alignment: Alignment.centerRight,
                             child: PopupMenuButton(
-                              onSelected: choiceAction,
+                              onSelected: (value) {
+                                if (value == "edit") {
+                                } else if (value == "delete") {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        content: Text("삭제하시겠습니까?"),
+                                        actions: <Widget>[
+                                          FlatButton(
+                                            onPressed: () {},
+                                            child: Text("예"),
+                                          ),
+                                          FlatButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text("아니오"),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+                              },
                               color: Colors.white,
                               itemBuilder: (context) => [
                                 PopupMenuItem(
@@ -137,12 +153,12 @@ class CommunityCardV2 extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height:5.0),
+                      SizedBox(height: 5.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.3 ,
+                            width: MediaQuery.of(context).size.width * 0.3,
                             height: 100,
                             decoration: BoxDecoration(
                               color: Color(0xFFBCE0FD),
@@ -151,9 +167,9 @@ class CommunityCardV2 extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(width:2.0),
+                          SizedBox(width: 2.0),
                           Container(
-                            width: MediaQuery.of(context).size.width *0.3,
+                            width: MediaQuery.of(context).size.width * 0.3,
                             height: 100,
                             decoration: BoxDecoration(
                               color: Color(0xFFBCE0FD),
@@ -162,9 +178,9 @@ class CommunityCardV2 extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(width:2.0),
+                          SizedBox(width: 2.0),
                           Container(
-                            width: MediaQuery.of(context).size.width *0.3,
+                            width: MediaQuery.of(context).size.width * 0.3,
                             height: 100,
                             decoration: BoxDecoration(
                               color: Color(0xFFBCE0FD),

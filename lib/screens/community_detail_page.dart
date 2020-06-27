@@ -4,8 +4,8 @@ import 'package:moo/components/circular_button.dart';
 class CommunityDetailPage extends StatefulWidget {
   final String writer;
   final String contents;
-  final num favoriteCount;
-  final num commentCount;
+  final int favoriteCount;
+  final int commentCount;
 
   CommunityDetailPage({
     Key key,
@@ -155,7 +155,8 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
                     ],
                   ),
                   SizedBox(height: 16.0),
-                  _tags(),
+                  // TODO: tag widgets
+                  // _tags(),
                   SizedBox(height: 16.0),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -265,7 +266,7 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
     );
   }
 
-  _comment(String writer, String comment, String date, num favoriteCount) {
+  _comment(String writer, String comment, String date, int favoriteCount) {
     return Container(
       color: Colors.white,
       child: Padding(
@@ -416,14 +417,7 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
                         color: Theme.of(context).scaffoldBackgroundColor,
                         child: Column(
                           children: <Widget>[
-                            _comment('소!리질러~', '댓글' * 20,
-                                DateTime.now().toString(), 10),
-                            Divider(height: 0.0),
-                            _comment('소!리질러~', '댓글' * 20,
-                                DateTime.now().toString(), 10),
-                            Divider(height: 0.0),
-                            _comment('소!리질러~', '댓글' * 20,
-                                DateTime.now().toString(), 10),
+                            // TODO: comment widget
                           ],
                         ),
                       ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moo/screens/main_page.dart';
+import 'package:moo/screens/splash_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,10 +8,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '여기보소',
-      theme: ThemeData(
-        primaryColor: Color.fromARGB(255, 0, 136, 255)
-      ),
-      home: MainPage(),
+      theme: ThemeData(primaryColor: Color.fromARGB(255, 0, 136, 255)),
+      home: SplashPage(),
       debugShowCheckedModeBanner: false,
     );
   }
